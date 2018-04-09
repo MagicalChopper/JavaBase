@@ -18,3 +18,63 @@ LinkedHashSet
 具有可预知迭代顺序的 Set 接口的哈希表和链接列表实现。此实现与 HashSet 的不同之外在于，后者维护着一个运行于所有条目的双重链接列表。
 此链接列表定义了迭代顺序，即按照将元素插入到 set 中的顺序（插入顺序）进行迭代。注意，插入顺序不 受在 set 中重新插入的 元素的影响。
 哈希表保证元素的唯一性，链表保证元素有序，也就是存入顺序和取出顺序相同。
+
+TreeSet是SortedSet接口的实现类，正如SortedSet名字暗示的，TreeSet可以确保集合元素处于排序状态。
+
+与HashSet集合相比，TreeSet还提供了如下几个额外方法：
+
+Comparator comparator()；如果TreeSet采用了定制排序，则该方法返回定制排序所使用Comparator；如果TreeSet采用了自然排序，则返回null；
+Object first()；返回集合中的第一个元素；
+Object last()；返回集合中的最后一个元素；
+Object lower(Object o)；返回集合中位于指定元素之前的元素（即小于指定元素的最大元素，参考元素不需要是TreeSet集合里的元素）；
+Object higher(Object o)；返回集合中位于指定元素之后的元素（即大于指定元素的最小元素，参考元素不需要是TreeSet集合里的元素）；
+SortedSet subSet(Object fromElement,Object toElement)；返回此Set的子集合，返回从fromElement,Object （包含到）toElement(不包含)；
+SortedSet headSet(Object toElement)；返回此Set的子集，由小于toElement的元素组成；
+SortedSet tailSet(Object fromElement)；返回此Set的子集，由大于或等于fromElement的元素组成；
+
+TreeSet支持两只排序方法：自然排序与定制排序。
+
+自然排序：
+TreeSet会调用集合元素的compareTo(Object o)方法来比较元素之间的大小关系，然后将集合元素按升序排列，这种方式是自然排序。
+Java提供了一个Comparable接口，该接口定义一个compareTo(Object o)方法，该方法返回一个整数值，实现该接口的类必须实现该方法，
+实现该接口的类的对象就可以比较大小。当一个对象调用该方法与另一个对象进行比较时，例如：obj1.compareTo(obj2)，如果该方法返
+回0，则代表这两个对象相等；如果该方法返回一个正整数，则表明obj1大于obj2；如果该方法返回一个负整数，则表明obj1小于obj2。
+
+特别篇：
+Java的一些常用类已经实现了Comparable接口，并提供了比较大小的标准。下面是实现了Comparable接口的常用类。
+1 BigDecimal、BigInterger以及所有的数值型对应的包装类：按它们对应的数值大小进行比较。
+2 Character: 按字符的UNICODE值进行比较。
+3 Boolean: true对应的包装示例大于false对应的包装类实例。
+4 String: 按字符串中字符的UNICODE值进行比较。
+5 Date、Time: 后面的时间、日期比前面的时间、日期大。
+
+如果试图把一个对象添加到TreeSet时，则该对象的类必须实现Comparable接口，否则程序会抛出异常java.lang.ClassCastException。
+TreeSet集合中添加两个对象，添加第一个对象时，TreeSet里没有任何元素，所以不会出现任何问题；当添加第二个对象时，
+TreeSet就会调用该对象的compareTo(Object obj)方法与集合中的其他元素进行比较—如果其对应的类没有实现Comparable 接口，
+则会引发ClassCastException异常。而且如果希望TreeSet能够正常运行，TreeSet只能添加同一类型对象
+
+TreeSet判断标准：
+TreeSet判断两个对象是否相等的唯一标准是：两个对象通过compareTo(Object o)方法比较是否返回0 如果通过compareTo(Object o)
+方法比较返回0，TreeSet则会认为它们相等：否则就认为它们不相等。
+
+定制排序
+TessSet的自然排序是根据集合元素的大小，TreeSet将它们以升序排列。如果需要实现定制排序，例如以降序排列，则可通过Comparator
+接口的帮助。该接口里包含一个int compate(T o1,T o2)方法，该方法用于比较o1和o2的大小：如果该方法返回正整数，则表明o1大于o2;
+如果该方法返回0，则表明o1等于o2；如果该方法返回负整数，则表明o1小于o2。
+
+TreeSet总结:
+特点
+    TreeSet是用来排序的, 可以指定一个顺序, 对象存入之后会按照指定的顺序排列
+使用方式
+    a.自然顺序(Comparable)
+        TreeSet类的add()方法中会把存入的对象提升为Comparable类型
+        调用对象的compareTo()方法和集合中的对象比较
+        根据compareTo()方法返回的结果进行存储
+    b.比较器顺序(Comparator)
+        创建TreeSet的时候可以制定 一个Comparator
+        如果传入了Comparator的子类对象, 那么TreeSet就会按照比较器中的顺序排序
+        add()方法内部会自动调用Comparator接口中compare()方法排序
+        调用的对象是compare方法的第一个参数,集合中的对象是compare方法的第二个参数
+    c.两种方式的区别
+        TreeSet构造函数什么都不传, 默认按照类中Comparable的顺序(没有就报错ClassCastException)
+        TreeSet如果传入Comparator, 就优先按照Comparator

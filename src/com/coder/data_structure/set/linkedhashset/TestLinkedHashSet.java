@@ -1,4 +1,4 @@
-package com.coder.data_structure.set;
+package com.coder.data_structure.set.linkedhashset;
 
 import java.util.LinkedHashSet;
 

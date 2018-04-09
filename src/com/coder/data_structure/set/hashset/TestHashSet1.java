@@ -1,4 +1,4 @@
-package com.coder.data_structure.set;
+package com.coder.data_structure.set.hashset;
 
 import com.coder.data_structure.model.User;
 

@@ -1,4 +1,4 @@
-package com.coder.data_structure.set;
+package com.coder.data_structure.set.hashset;
 
 import java.util.HashSet;
 import java.util.Iterator;
