@@ -1,6 +1,6 @@
 package com.coder.data_structure.set;
 
-import com.coder.model.User;
+import com.coder.data_structure.model.User;
 
 import java.util.HashSet;
 
