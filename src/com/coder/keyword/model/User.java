@@ -3,9 +3,10 @@ package com.coder.keyword.model;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private static final long serialVersionUID = 8294180014912103005L;
+    private static final long serialVersionUID = 4012222497147014210L;
 
     private String username;
+
     private transient String passwd;
 
     public String getUsername() {

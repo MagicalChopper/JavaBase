@@ -1,12 +1,13 @@
-package com.coder.model;
+package com.coder.data_structure.model;
 
 import java.io.Serializable;
 
 public class User implements Serializable  {
 
-    private static final long serialVersionUID = 8294180014912103005L;
+    private static final long serialVersionUID = 2913231420147461190L;
 
     private int id;
+
     private String name;
 
     public User() {}
@@ -42,7 +43,7 @@ public class User implements Serializable  {
 
     @Override
     public int hashCode() {
-       return this.name.hashCode()+this.id*11;
+        return this.name.hashCode()+this.id*11;
 //       return 0;
     }
 
