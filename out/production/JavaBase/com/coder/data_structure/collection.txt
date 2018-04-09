@@ -1,0 +1,16 @@
+Java中集合类是用来存放对象的
+集合相当于一个容器，里面包容着一组对象 —— 容器类
+其中的每个对象作为集合的一个元素出现
+Java API提供的集合类位于java.util包内
+
+Collection接口:set接口和List的父接口
+Set － 无序的集合；不允许重复（如 HashSet）
+List － 有序的集合；允许重复（如 ArrayList、LinkedList）
+
+Set:用来包含一组 无序无重复 的对象
+无序 — 是指元素存入顺序和集合内存储的顺序不同
+无重复 — 两个对象e1和e2，如果e1.equals(e2)返回true，则认为e1和e2重复
+
+Set有两种主要的集合实现类：
+HashSet — HashSet的特性在于其内部对象的散列存取，即采用哈希技术
+TreeSet — TreeSet存入的顺序跟存储的顺序不同，但是存储是按照排序存储的
